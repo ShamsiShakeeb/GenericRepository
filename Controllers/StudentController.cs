@@ -15,35 +15,30 @@ namespace GenericMvc.Controllers
         {
             _repoStudent = new Repository<Student>();
         }
-        [Route("api/student/index")]
         [HttpGet]
         public IActionResult Index()
         {
             var data = _repoStudent.GetAll();
-            return Ok(new { data = data});
+            return View(data);
         }
-        [Route("api/student/insert")]
         [HttpPost]
         public IActionResult Insert(Student student)
         {
             _repoStudent.Insert(student);
-            return Ok(new { data = _repoStudent.GetAll() });
+            return Redirect("~/Student/Index");
         }
-        [Route("api/student/update")]
         [HttpPost]
         public IActionResult Update(Student student)
         {
             _repoStudent.Update(x => x.Id == student.Id, student);
-            return Ok(new { data = _repoStudent.GetAll()});
+            return Redirect("~/Student/Index");
         }
-        [Route("api/student/delete")]
         [HttpPost]
         public IActionResult Delete(Student student)
         {
             _repoStudent.Delete(x => x.Id == student.Id);
-            return Ok(new { data = _repoStudent.GetAll() });
+            return Redirect("~/Student/Index");
         }
-        [Route("api/student/search/{searchValue}")]
         [HttpGet]
         public IActionResult Search(string searchValue)
         {
@@ -53,7 +48,7 @@ namespace GenericMvc.Controllers
             || x.Name.Contains(searchValue)
             || x.Address.Contains(searchValue)
             || x.Cgpa.ToString().Contains(searchValue));
-            return Ok(new {data = data});
+            return View("index",data);
         }
     }
 }
