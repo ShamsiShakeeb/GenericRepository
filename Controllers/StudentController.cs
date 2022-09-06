@@ -20,7 +20,7 @@ namespace GenericMvc.Controllers
         {
             var data = _repoStudent.GetAll();
             return View(data);
-        }
+        } 
         [HttpPost]
         public IActionResult Insert(Student student)
         {
