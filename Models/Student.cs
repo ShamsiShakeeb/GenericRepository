@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace GenericMvc.Models
 {
-    public class Student
+    public class Student : BaseEntity
     {
-        public int Id { set; get; }
         public string Name { set; get; }
         public string Email { set; get; }
         public string Phone { set; get; }
